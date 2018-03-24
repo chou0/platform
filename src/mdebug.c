@@ -3,11 +3,9 @@
 
 void hexdump(uint8 *buffer, int len)
 {
-    int i;
-    
-    for (i = 0; i < len; i++)
+    while (len--)
     {
-        printf("%02x ", buffer[i]);
+        printf("%02x ", buffer++);
     }
     
     printf("\n");

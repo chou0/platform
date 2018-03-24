@@ -25,7 +25,7 @@ int mnet_setnoblock(int fd)
 
 int mnet_check_connectble(char *ipaddr, int port, int timeout)
 {
-    struct sockaddr_in remote;
+    struct sockaddr_in remote = {0};
     struct timeval timeo = {3, 0};
     socklen_t len;
     int client, ret = -1;
@@ -42,7 +42,7 @@ int mnet_check_connectble(char *ipaddr, int port, int timeout)
 	}
 	
 	setsockopt(client, SOL_SOCKET, SO_SNDTIMEO, &timeo, sizeof timeo);     
-	memset(&remote, 0, sizeof remote);
+
 	remote.sin_family = AF_INET;
 	remote.sin_port = htons(port);
     remote.sin_addr.s_addr = inet_addr(ipaddr);
